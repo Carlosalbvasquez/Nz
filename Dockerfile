@@ -1,13 +1,20 @@
 FROM php:8.2-apache
 
-# Copia el código fuente al contenedor
-COPY ./public /var/www/html/public
-COPY ./backend /var/www/html/backend
+# Instala dependencias comunes para PHP
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip \
+    && docker-php-ext-install pdo pdo_mysql zip \
+    && rm -rf /var/lib/apt/lists/*
 
-# Cambia el DocumentRoot de Apache a /var/www/html/public
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+# Copia todo el contenido de la raíz al contenedor
+COPY . /var/www/html/
 
-# Da permisos adecuados (opcional, según tu necesidad)
+# No cambia el DocumentRoot (usa el predeterminado /var/www/html)
+# Opcional: Si quieres un subdirectorio público, descomenta y ajusta
+# RUN mkdir -p /var/www/html/public && mv /var/www/html/login.html /var/www/html/public/
+
+# Da permisos adecuados
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
