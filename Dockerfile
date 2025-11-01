@@ -1,25 +1,27 @@
 FROM php:8.2-apache
 
-# Instala dependencias comunes para PHP
+# Instala dependencias comunes para PHP (MySQL, ZIP, etc.)
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     && docker-php-ext-install pdo pdo_mysql zip \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia todo el contenido de la raíz al contenedor
+# Copia TODO el código a /var/www/html/
 COPY . /var/www/html/
 
-# No cambia el DocumentRoot (usa el predeterminado /var/www/html)
-# Opcional: Si quieres un subdirectorio público, descomenta y ajusta
-# RUN mkdir -p /var/www/html/public && mv /var/www/html/login.html /var/www/html/public/
+# Suprime advertencia de ServerName
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Da permisos adecuados
+# Configura DirectoryIndex para incluir index.php y index.html
+RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
+
+# Da permisos correctos
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Expone el puerto 80
+# Expone puerto 80 (Render lo detecta automáticamente)
 EXPOSE 80
 
-# Comando por defecto
+# Inicia Apache
 CMD ["apache2-foreground"]
