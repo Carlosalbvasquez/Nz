@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro Nequi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="assets/css/registro.css">
+</head>
+<body>
+  <div class="registro-container">
+    <h1>Regístrate en Nequi</h1>
+    <p>Crea tu cuenta para empezar a usar Nequi.</p>
+
+    <!-- 🔹 Ruta corregida -->
+    <form method="POST" action="../backend/finalizar.php" autocomplete="off">
+      <div class="registro-field">
+        <input type="text" name="nombre" placeholder="Nombre completo" required>
+      </div>
+      <div class="registro-field">
+        <input type="email" name="correo" placeholder="Correo electrónico" required>
+      </div>
+      <div class="registro-field">
+        <input type="tel" name="celular" placeholder="Número de celular" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
+      </div>
+      <div class="registro-field">
+        <input type="password" name="password" placeholder="Contraseña" minlength="4" maxlength="4" required>
+      </div>
+      <button type="submit" class="nequi-btn">Registrarse</button>
+    </form>
+  </div>
+</body>
+</html>
